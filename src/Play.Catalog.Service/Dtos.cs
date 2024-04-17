@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Play.Catalog.Service.Dtos
 {
@@ -6,7 +7,7 @@ namespace Play.Catalog.Service.Dtos
 
 	// Id and CreatedDate are automatically populated.
 	// This is a contract and whoever want to do a post to create an item, they need to obey this contract
-	public record CreateItemDto(string Name, string Description, decimal Price);
+	public record CreateItemDto([Required] string Name, string Description, [Range(0,1000)] decimal Price);
 
-    public record UpdateItemDto(string Name, string Description, decimal Price);
+    public record UpdateItemDto([Required] string Name, string Description, [Range(0, 1000)] decimal Price);
 }
