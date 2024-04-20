@@ -14,9 +14,14 @@ namespace Play.Catalog.Service.Controllers
 	[Route("items")]
 	public class ItemsController : ControllerBase
 	{
-		private readonly ItemsRepository itemsRepository = new();
+		private readonly IItemsRepository itemsRepository;
 
-		[HttpGet]
+        public ItemsController(IItemsRepository itemsRepository)
+        {
+			this.itemsRepository = itemsRepository;
+        }
+
+        [HttpGet]
 		public async Task<IEnumerable<ItemDto>> GetAsync()
 		{
 			var items = (await itemsRepository.GetAllAsync())
