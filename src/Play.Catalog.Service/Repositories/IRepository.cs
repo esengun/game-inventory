@@ -5,12 +5,12 @@ using System.Threading.Tasks;
 
 namespace Play.Catalog.Service.Repositories
 {
-	public interface IItemsRepository
+	public interface IRepository<T> where T : IEntity
 	{
-		Task CreateAsync(Item entity);
-		Task<IReadOnlyCollection<Item>> GetAllAsync();
-		Task<Item> GetAsync(Guid Id);
+		Task CreateAsync(T entity);
+		Task<IReadOnlyCollection<T>> GetAllAsync();
+		Task<T> GetAsync(Guid Id);
 		Task RemoveAsync(Guid id);
-		Task UpdateAsync(Item entity);
+		Task UpdateAsync(T entity);
 	}
 }
