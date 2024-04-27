@@ -44,6 +44,18 @@ namespace Play.Inventory.Service
                         Console.WriteLine($"Delaying for {timespan.TotalSeconds} seconds, then making retry {retryattempt}");
                     }
                     ))
+                .AddTransientHttpErrorPolicy(builder => builder.Or<TimeoutRejectedException>().CircuitBreakerAsync(
+                    3, // number of retry before opening circuit
+                    TimeSpan.FromSeconds(15), // duration of break
+                    onBreak: (outcome, timespan) =>
+                    {
+						Console.WriteLine($"Opening the circuit for {timespan.TotalSeconds} seconds...");
+					},
+                    onReset: () =>
+                    {
+                        Console.WriteLine("Closing the circuit...");
+                    }
+                    ))
                 .AddPolicyHandler(Policy.TimeoutAsync<HttpResponseMessage>(1));
 
             services.AddControllers();
