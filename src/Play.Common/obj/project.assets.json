@@ -1966,7 +1966,7 @@
     "C:\\Users\\mesen\\.nuget\\packages\\": {}
   },
   "project": {
-    "version": "1.0.0",
+    "version": "1.0.1",
     "restore": {
       "projectUniqueName": "D:\\Projects\\Microservice_ClassCentral\\Play.Common\\src\\Play.Common\\Play.Common.csproj",
       "projectName": "Play.Common",
