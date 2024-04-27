@@ -7,7 +7,9 @@ using Microsoft.OpenApi.Models;
 using Play.Common.MongoDB;
 using Play.Inventory.Service.Clients;
 using Play.Inventory.Service.Entities;
+using Polly;
 using System;
+using System.Net.Http;
 
 namespace Play.Inventory.Service
 {
@@ -29,7 +31,8 @@ namespace Play.Inventory.Service
             services.AddHttpClient<CatalogClient>(client =>
             {
                 client.BaseAddress = new Uri("https://localhost:44376");
-            });
+            })
+                .AddPolicyHandler(Policy.TimeoutAsync<HttpResponseMessage>(1));
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
