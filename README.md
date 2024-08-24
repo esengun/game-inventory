@@ -8,7 +8,8 @@ There are two microservices:
 
 Inventory service: Responsible for managing items in a player's inventory.
 Catalog service: Responsible for managing categories of inventory items.
-Additionally, there is a common library, which includes generic repository pattern which is used by both of the above services.
+
+Additionally, there is a common library, which includes generic repository pattern and used by both of the above services imported as a NuGet package.
 
 Communication between services: Handled by RabbitMQ
 Used DB: MongoDB
